@@ -1,21 +1,23 @@
-function post() {
-  fetch('https://jsonplaceholder.typicode.com/posts')
+function postIndex() {
+  const url = 'https://jsonplaceholder.typicode.com/posts';
+  fetch(url)
     .then(res => res.json())
-    .then(data => displayPost(data))
+    .then(data => displayIndex(data))
 }
-post()
-function displayPost(posts) {
-  const container = document.getElementById('container')
-  for (const man of posts) {
-    console.log(man);
-    const post = document.createElement('div');
-    post.innerHTML = `
-   <h4 style="color:red">user-${man.userId} </h4>
-   <h5>post-${man.title} </h5>
-   <p>body-${man.body}</p>
+
+function displayIndex(data) {
+  const container = document.getElementById('container');
+  for (const post of data) {
+    console.log(post);
+    const div = document.createElement('div');
+    div.innerHTML = `
+   <h4 style="color:red">user- ${post.id}</h4>
+   <h3>title-${post.title}</h3>
+   <p>body-${post.body}</p>
     `
-    post.classList.add('post')
-    // post.classList.add('user')
-    container.appendChild(post)
+    div.classList.add('post')
+    container.appendChild(div);
+
   }
+
 }
